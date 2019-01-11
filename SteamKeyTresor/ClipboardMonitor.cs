@@ -7,7 +7,6 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SteamKeyTresor
 {
@@ -16,7 +15,6 @@ namespace SteamKeyTresor
     /// </summary>
     public class ClipboardMonitor : NativeWindow
     {
-
         const int WM_DESTROY = 0x2;
         const int WM_DRAWCLIPBOARD = 0x308;
         const int WM_CHANGECBCHAIN = 0x30d;
@@ -54,9 +52,7 @@ namespace SteamKeyTresor
                         }
                     }
                     SendMessage(this.NextClipBoardViewerHandle, m.Msg, m.WParam, m.LParam);
-
                     break;
-
                 case WM_CHANGECBCHAIN:
                     if (m.WParam.Equals(this.NextClipBoardViewerHandle))
                     {
@@ -67,11 +63,9 @@ namespace SteamKeyTresor
                         SendMessage(this.NextClipBoardViewerHandle, m.Msg, m.WParam, m.LParam);
                     }
                     break;
-
                 case WM_DESTROY:
                     ChangeClipboardChain(this.Handle, this.NextClipBoardViewerHandle);
                     break;
-
             }
 
             base.WndProc(ref m);
